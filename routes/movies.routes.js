@@ -45,8 +45,33 @@ router.get("/", async (req, res, next) => {
     next(err)
   }
   
+})
 
+// router.get("/:id", async (req, res, next) => {
 
+//   try{
+//   const {id} = req.params
+//   const oneMovie = await MovieModel.findById(id).populate("cast")
+//   console.log(oneMovie);
+//   res.render("movies/movie-details.hbs", {oneMovie})
+//   }
+//   catch (err) {
+//     next(err)
+//   }
+// })
+
+router.get("/:id",  (req, res, next) => {
+
+  MovieModel.findById(req.params.id)
+  .populate("cast") // *=> identificar el parametro que crea la relacion
+  .then((oneMovie) => {
+    console.log(oneMovie);
+    res.render("movies/movie-details.hbs", {oneMovie})
+  })
+  .catch ((err) => {
+    next(err)
+  })
+ 
 })
 
 
