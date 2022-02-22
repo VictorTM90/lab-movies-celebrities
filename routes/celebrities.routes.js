@@ -22,6 +22,17 @@ router.post("/create", (req, res, next) => {
     })
 })
 
+router.get ("/", (req, res, next) => {
+    CelebrityModel.find()
+    .then ((allCelebrities) => {
+        // console.log("Funciona: ", allCelebrities);
+        res.render("celebrities/celebrities.hbs", {allCelebrities})
+    })
+    .catch ((err) => {
+        next(err)
+    })
+})
+
 
 
 
