@@ -13,9 +13,26 @@ router.get("/create", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-
-
 });
+
+router.post("/create", async (req, res, next)=>{
+     try {
+         const {title, genre, plot, cast} = req.body
+       
+         console.log(req.body)
+         const newMovie = await MovieModel.create ({
+            title, 
+            genre, 
+            plot, 
+            cast
+        })
+        console.log(newMovie);
+        res.redirect("/")
+     }
+     catch(err){
+        next(err)
+     }
+})
 
 
 
