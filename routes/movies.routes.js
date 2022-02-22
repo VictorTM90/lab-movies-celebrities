@@ -35,6 +35,20 @@ router.post("/create", async (req, res, next)=>{
 })
 
 
+router.get("/", async (req, res, next) => {
+
+  try{
+  const allMovies = await MovieModel.find()
+  res.render("movies/movies.hbs", {allMovies})
+  }
+  catch (err){
+    next(err)
+  }
+  
+
+
+})
+
 
 
 
